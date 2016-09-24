@@ -79,3 +79,32 @@ elem(me, 0) # => Zacck
 
 #updating element in a tuple
 put_elem(me, 1, 25) # => {"Zacck", 25}  tuple, element, value
+
+#LISTS
+#these are variable length collections
+[value, value]
+
+#EXamples
+ages = [42, 31,24]
+names = ["Ash", "Leslie", "Dori"]
+
+Enum.at(names, 0) # => "Ash"
+
+"""
+-elixir lists are head/tail pairs
+-Immutability makes them memory efficient
+-Prepending is FAST
+-Appending is SLOW
+-Inserting elements can be slow
+-Reading the whole list can be slow
+
+"""
+
+#CHARACTER LISTS
+[integer, integer]
+
+#examples
+'hello'
+
+#is really
+[104, 101, 108, 108, 111]
