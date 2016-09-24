@@ -69,3 +69,13 @@ episode[:student] # => "Zacck Osiemo"
 
 #TUPLES
 #these are collections of items
+{value, value}
+
+#examples
+me = {"Zacck", 26}
+
+#How to acces elements in a tuple
+elem(me, 0) # => Zacck
+
+#updating element in a tuple
+put_elem(me, 1, 25) # => {"Zacck", 25}  tuple, element, value
