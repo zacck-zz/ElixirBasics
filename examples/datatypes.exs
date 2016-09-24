@@ -108,3 +108,14 @@ Enum.at(names, 0) # => "Ash"
 
 #is really
 [104, 101, 108, 108, 111]
+
+
+#FUNCTIONS
+fn(args) -> ... end
+
+#Examples
+add = fn(a, b) ->
+        a + b
+      end
+
+add.(1,2) #  =>3  
