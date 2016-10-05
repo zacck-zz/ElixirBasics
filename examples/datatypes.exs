@@ -95,7 +95,7 @@ Enum.at(names, 0) # => "Ash"
 -Immutability makes them memory efficient
 -Prepending is FAST
 -Appending is SLOW
--Inserting elements can be slow
+-Inserting elements to the end can be slow
 -Reading the whole list can be slow
 
 """
@@ -118,4 +118,12 @@ add = fn(a, b) ->
         a + b
       end
 
-add.(1,2) #  =>3  
+add.(1,2) #  =>3
+
+#How to check Types
+
+is_type(value)
+
+is_atom(:hello)  #=> true
+is_list ([1,2,3]) # =>  true
+is_map(%{...}) # => true
