@@ -21,7 +21,11 @@ Modules can be nested and functions
 private function
 """
 defmodule Math do
-  +alias Really.Long.OtherModule as 0
+  #importing function
+  import Modulename,
+    only:[other_function: 1] #name of the function and number of params
+  #aliasing
+  alias Really.Long.OtherModule, as: o
   def add(a,n) do
     a + b
   end
