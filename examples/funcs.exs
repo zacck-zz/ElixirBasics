@@ -25,7 +25,7 @@ defmodule Math do
   import Modulename,
     only:[other_function: 1] #name of the function and number of params
   #aliasing
-  alias Really.Long.OtherModule, as: o
+  alias Really.Long.OtherModule, as: O
   def add(a,n) do
     a + b
   end
