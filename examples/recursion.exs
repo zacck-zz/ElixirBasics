@@ -85,4 +85,20 @@ defmodule MyList do
     do_map(t, fun, acc)
   end
 
+
+  def sum(list, fun) do
+    do_sum(list, fun, 0)
+  end
+
+  #base case when empty or last call
+  defp do_sum([], fun, acc) do
+    #return the accumulator
+    acc
+  end
+
+  defp do_sum([h|t], fun, acc) do
+    result = fun.(acc , h)
+    do_sum(t, fun, result)
+  end
+
 end
