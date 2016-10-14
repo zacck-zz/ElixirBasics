@@ -12,11 +12,13 @@ defmodule MyList do
 
 
   #private functin that takes in a list and a count variable this will return 0 if the passed in list is empty
+  #this is will be called if the list is empty
   defp length([], count) do
     count
   end
 
   defp length([_|t], count) do
+    #call in this same function but with the first element in the list popped
     length(t, count + 1)
   end
 
