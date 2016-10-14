@@ -33,18 +33,20 @@ end
 
 
 defmodule MyList do
+  #EACH returns the atom :ok in the final call
   #if empty list is passed in
   def each([], _fun) do
     :ok
   end
 
   #if list passed in is not empty
-  def each ([h|t], fun) do
+  def each ([h|t], fun) do   #pop off the first element
     fun.(h)
+    #recursively call each with the tail of the function
     each(t, fun) #tail call optimization
   end
 
-  #MAP
+  #MAP Returns a list of the results
   # map will take a list of things run each element through a function and return a new list
   # with the results of elements as acted uponn by the function
 
@@ -59,17 +61,27 @@ defmodule MyList do
   end
 
   #map implementation
+  #this takes in a list and a function and delegates all the work to a private do_map function
   def map(list, fun) do
+    #takes in a list, function and an empty list that acts as an accumulator
     do_map(list, fun, [])
   end
 
+  #in case list is empty reverse and return the list as it will be in the wrong order
+  #since this will be called last anyway after the map the reverse part still applies
   defp do_map([], fun, acc) do
     :lists.reverse(acc)
   end
 
+  #when list is not empty
+  #pop the first element offf
   defp do_map([h|t], fun, acc) do
+    #run first element through function and return result
     result = fun.(h)
+    #then prepend the result of the function to the accumulator list
+    #this is why we have to reverse the order of the list in the base case
     acc = [result| acc]
+    #at this point it will call itself on the remainder of the list
     do_map(t, fun, acc)
   end
 
