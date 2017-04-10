@@ -101,3 +101,17 @@ These are lists of a special kind in these each element is a tuple with two elem
 These are maps of special kind. These are maps that have struct key.
 
 `%{__struct__: ModuleName, ...}`
+
+
+```Elixir
+%Post{
+  title: "Anatomy of An Elm Application",
+  author: "Zacck Osiemo"
+}
+```
+
+**Range**
+
+Collection of numbers.
+
+**Regular Expressions**
