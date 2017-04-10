@@ -1,5 +1,5 @@
 # ElixirBasics
 
-**Notes on Learning The basics of Elixir**
+**Notes on Learning  Elixir**
 
 Start with src folder for code.
