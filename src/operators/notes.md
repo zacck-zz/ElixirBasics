@@ -162,7 +162,7 @@ var = bar(var)
 var = var
       |> foo
       |> bar
-# in other languages this would be
+#  this translates to
 
 var = bar(foo(var))
 ```
