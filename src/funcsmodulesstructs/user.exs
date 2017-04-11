@@ -18,7 +18,7 @@ defmodule User do
 
     -`user` - A User struct
 
-  ##examplees
+  ## examplees
     user = %User{name: "Zacck Osiemo"}
     User.first_name(user)
     "Zacck"
@@ -36,7 +36,7 @@ defmodule User do
 
     -`user` - A User struct
 
-  ##examplees
+  ## examplees
     user = %User{name: "Zacck Osiemo"}
     User.last_name(user)
     "Osiemo"
