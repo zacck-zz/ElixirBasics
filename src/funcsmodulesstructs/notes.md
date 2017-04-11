@@ -114,6 +114,7 @@ Here we see we change the name as we import the module and then proceed using th
 
 
 **Importing**
+
  We can also import modules and use them.
 
  ```Elixir
@@ -125,3 +126,91 @@ Here we see we change the name as we import the module and then proceed using th
     end
  end
  ```
+
+ Importing let's  you use the function in other modules like they are defined right in your module
+
+ *Import some functions with only*
+
+ ```Elixir
+ import Really.Long.OtherModule,
+ only: [other_function: 1]
+
+ ```
+ The `only` function takes a keyword list where the `atom` is the name of the function and the number is the number of parameters expected  by the function.
+
+ You can also import everything from another module `except` some functions this works almost the same way as only
+
+ ```Elixir
+ import Really.Long.OtherModule,
+ except: [other_function: 1]
+ ```
+
+**defdelegate**
+
+This makes it appear as though the function is defined in your model whereas you really just delegate the work to another module.
+
+```Elixir
+defmodule MyModule do
+  defdelegate function(arg1, arg2), to: Really.Long.OtherModule,
+                                    as: :my_function
+end
+
+MyModule.my_function(1,2)
+```
+
+
+**Documentation**
+
+`@moduledoc`: Documentation for your module.
+`@doc`: Documentation for your function.
+
+
+`@moduledoc` Is written at the very top of your module outside any other defined functions.
+
+```Elixir
+defmodule Math do
+@moduledoc """
+Defines some basic math operation functions.
+"""
+```
+
+`@doc` Is written above the function you are documenting.
+
+```Elixir
+@doc """
+Adds two integers together.
+
+## Examples
+
+  add(1, 2)
+  3
+
+  add(4, 5)
+  9
+"""
+def add(a, b) do
+  a + b
+end
+```
+
+
+You can and should `markdown` to write your documentation. Private functions do not need to be documented as they do not get used outside the module.
+
+
+
+**Structs**
+
+we can use `defstruct` macro to define structs in a module.
+
+```Elixir
+defmodule User do
+  defstruct name: nil,
+            email: nil
+end
+-- Use a struct using the `%` sign
+%User{} # => %{__struct__: User, name: nil, email: nil}
+
+%User{name: "Zacck"} # => {__struct__: User, name:"Zacck", email: nil}
+```
+
+A struct can only be used within a module. When defining our structs we give our properties default values so that those are used when one uses the struct without some data.
