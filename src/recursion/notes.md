@@ -116,3 +116,5 @@ MyList.map list, fn({name, _age}) ->
   name
 end
 ```
+
+Most of the time you can use the Elixir *stlib* functions.
