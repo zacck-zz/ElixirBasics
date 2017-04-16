@@ -125,7 +125,100 @@ Enum.filter ([1, 2, 3], &is_number/1)
 # this lets Elixir know that we want to make what follows an anonymous function.
 # then we just use the is_number function directly
 # then the number of parameters our function takes this is because you may have another polymorphic copy of the function elsewhere
-
  ```
 
+ We can also specify to our capture Operator to pick only the first argument passed to it.
+
+ `Enum.filter ([1, 2, 3], &is_number(&1))`
+
+ Here we are telling our function to use only the first argument passed to it.
+
+ We can write the reduce function like this
+
+ `Enum.reduce([1, 2, 3], &(&1 + &2))`
+
+Here we are using `&` to make an anonymous function the using the Operator to cherry pick the first and second argument provided to our anonymous function.
+
+We can also capture operators since they are functions too.
+
+`Enum.reduce([1, 2, 3], &+/2)`
+
+You can capture functions from other modules
+
+`Enum.map(["Daniel", "Joe"], &String.upcase/1)`
+`# => ["DANIEL", "JOE"]`
+
+
 **Stream Module**
+
+This is a lazy version of the Enum  module. It has a lot of the same functions but it doesnt do any work until it has to. And even then it only does what it has to do.
+
+```Elixir
+[1, 2, 3, "string"]
+|> Stream.filter(&is_number/1)
+|> Stream.map(&(&1 * 2))
+
+# => %Stream{enum: [1,2,3, "string"]. funcs: [ ...]}
+```
+
+This will return a stream struct
+
+```Elixir
+%Stream{
+  enum: [1, 2, 3, "string"] #enum attrib is used to store the enumerable we want to operate on
+  funs: [ # list of anon functions to run on that enumerable
+
+  ]
+}
+```
+
+This means a `Stream` can be built upon.
+
+We get a Stream to do its work by asking it for its results. e.g
+
+```Elixir
+stream = Stream.filter(list, &is_number/1)
+stream = Stream.filter(stream, &(&1 * 2 == 4))
+Enum.into(stream, [])
+```
+
+Here we are doing so by asking enum.into to convert a stream into a list.
+
+Another option is using the  `stream.run`
+
+```Elixir
+[1, 2, 3]
+|> Stream.each(fn(n) -> IO.puts(n) end)
+|> Stream.run
+```
+
+You would typically use this when you don't need to bind the results into a varianle.
+
+Stream can be more efficient than enum.
+
+**Stream.cycle/1**
+
+Creates an infinite stream of repeating elements.
+
+```Elixir
+Stream.cycle(["Spring", "Summer", "Autumn", "Winter"])
+|> Enum.take(8)
+# =>  [ "Spring", "Summer", "Autumn", "Winter", "Spring", "Summer", "Autumn", "Winter"]
+```
+
+**Stream.iterate/2**
+This can be used to create an infinite stream with a function
+
+```Elixir
+Stream.iterate(2, &(&1 * 2))
+|> Enum.take(3)
+# => [2, 4, 8]
+```
+
+Here we define a starting value and a function run on the previous value. 
+
+**Stream.resource/3**
+
+This can be used to convert anything into a stream.
+
+`Stream.resource(start_fun, next_fun, after_fun)`
