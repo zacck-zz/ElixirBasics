@@ -36,3 +36,15 @@ There are 3 mix enviroments
 1. test
 2. dev
 3. prod
+
+
+**How to Write Your Our mix task**
+
+1. Make a new folder in the lib directory called `mix`
+2. Make a new folder in here called `tasks`
+3. Then make a new module here
+
+
+Use the `--umbrella` flag to create a project that is big and compasses different functionalities.
+
+The `apps` folder is a reference to the fact that each mix project is n OTP application.
