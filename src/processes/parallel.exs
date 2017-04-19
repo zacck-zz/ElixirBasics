@@ -6,7 +6,7 @@ defmodule Parallel do
     |> Enum.map(&await/1) #wait for processes to complete and send use messages
   end
 
-  #this spawns a process that tajes in the item, the pid of the parent and the function to run on the item
+  #this spawns a process that takes in the item, the pid of the parent and the function to run on the item
   defp spawn_process(item, parent, fun) do
     # then we spawn a process that sends the parent  our process Id and the result
     spawn_link fn ->
