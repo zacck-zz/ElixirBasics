@@ -79,3 +79,7 @@ GenServer.cast(Game.Cache, {:save, state})
 3. Supervised worker processes can also have IDs using the `:id` option.
 
 `worker(SupervisedProcess, [], id: "some-id")`
+
+4. Supervisors can be Supervised.
+
+`supervisor(Game.Supervisor, [])`
